@@ -1,0 +1,79 @@
+<div class="container mt-4 formulario">
+  <h2>{{ editMode ? 'Editar Viagem' : 'Nova Viagem' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="salvar()" class="row g-3">
+    <div class="col-md-6">
+      <label>Destino</label>
+      <input class="form-control" formControlName="destino" required />
+    </div>
+
+    <div class="col-md-3">
+      <label>País</label>
+      <select class="form-control" formControlName="pais">
+        <option *ngFor="let pais of paises" [value]="pais.codigo">
+          {{ pais.nome }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label>Data de Ida</label>
+      <input type="date" class="form-control" formControlName="dataIda" required />
+    </div>
+
+    <div class="col-md-3">
+      <label>Data de Volta</label>
+      <input type="date" class="form-control" formControlName="dataVolta" required />
+    </div>
+
+    <div class="col-md-12">
+      <label>Descrição</label>
+      <textarea class="form-control" formControlName="descricao"></textarea>
+    </div>
+
+    <div class="col-md-4">
+      <label>CEP/Código Postal</label>
+      <input class="form-control" formControlName="cepLocal" 
+             [placeholder]="form.value.pais === 'BR' ? 'Ex: 01001000' : 'Código postal'"/>
+    </div>
+    
+    <div class="col-md-2 d-flex align-items-end">
+      <button class="btn btn-secondary w-100" type="button" 
+              (click)="buscarCep()" [disabled]="!form.value.cepLocal">
+        Buscar
+      </button>
+    </div>
+
+    <div *ngIf="erroCep" class="col-12">
+      <div class="alert alert-danger">CEP/Código postal inválido ou não encontrado.</div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <h5>Endereço do Destino</h5>
+    </div>
+
+    <div formGroupName="endereco" class="row g-3">
+      <div class="col-md-6">
+        <label>Logradouro</label>
+        <input class="form-control" formControlName="logradouro" />
+      </div>
+      <div class="col-md-3">
+        <label>Bairro</label>
+        <input class="form-control" formControlName="bairro" />
+      </div>
+      <div class="col-md-3">
+        <label>Cidade</label>
+        <input class="form-control" formControlName="cidade" />
+      </div>
+      <div class="col-md-3">
+        <label>Estado/Província</label>
+        <input class="form-control" formControlName="estado" />
+      </div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-success">Salvar</button>
+      <button type="button" class="btn btn-secondary ms-2" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,9 @@
+.formulario{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    padding: 2%;
+    border: 2px solid gray;
+    border-radius: 20px;
+  }

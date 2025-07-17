@@ -1,0 +1,96 @@
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login/Cadastro Personalizado</title>
+  <!-- CSS de terceiros -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<div class="container mt-5 forma-login">
+  <!-- Tabs -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="aba === 'login'"
+        (click)="selecionarAba('login')"
+        href="javascript:void(0)"
+      >
+        <i class="fas fa-sign-in-alt me-2"></i>Login
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="aba === 'cadastro'"
+        (click)="selecionarAba('cadastro')"
+        href="javascript:void(0)"
+      >
+        <i class="fas fa-user-plus me-2"></i>Cadastro
+      </a>
+    </li>
+  </ul>
+
+  <!-- Formulário -->
+  <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form mt-3" novalidate>
+    <div *ngIf="aba === 'cadastro'" class="form-floating mb-3">
+      <input
+        formControlName="nome"
+        type="text"
+        class="form-control"
+        id="nome"
+        placeholder="Nome completo"
+      />
+      <label for="nome"><i class="fas fa-user me-2"></i>Nome completo</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+      />
+      <label for="email"><i class="fas fa-envelope me-2"></i>Email</label>
+    </div>
+
+    <div class="form-floating mb-3 position-relative">
+    <input
+      formControlName="senha"
+      [type]="mostrarSenha ? 'text' : 'password'"
+      class="form-control pe-5"
+      id="senha"
+      placeholder="Senha"
+      autocomplete="current-password"
+    />
+    <label for="senha">
+      <i class="fas fa-lock me-2"></i>Senha
+    </label>
+      <i
+        class="fas"
+        [ngClass]="mostrarSenha ? 'fa-eye-slash' : 'fa-eye'"
+        (click)="mostrarSenha = !mostrarSenha"
+        style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; z-index: 2;"
+      ></i>
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-auth"
+      [disabled]="carregando || form.invalid"
+    >
+      <ng-container *ngIf="!carregando; else loading">
+        {{ toggleAbaText() }}
+      </ng-container>
+      <ng-template #loading>
+        <div class="loading-spinner"></div>
+      </ng-template>
+    </button>
+  </form>
+</div>
+
+  <!-- JS de terceiros -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Seu JS -->
+  <script src="js/app.js"></script>

@@ -1,0 +1,37 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .row {
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  
+  app-navbar {
+    height: 100%;
+  }
+  
+  app-cabecalho {
+    /* Ajuste o cabeçalho conforme necessário */
+    background-color: #343a40;
+    color: white;
+    padding: 10px 0;
+  }
+  
+  app-rodape {
+    height: 45px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #ffffff !important; /* Garante que o texto da navbar seja branco */
+  }
+  
+  .bg-dark {
+    background-color: #343a40 !important;
+  }
