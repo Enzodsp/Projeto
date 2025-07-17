@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'nova-viagem', component: ConsultaViagemComponent, canActivate: [AuthGuard] },
   { path: 'editar-viagem/:id', component: ConsultaViagemComponent, canActivate: [AuthGuard] },
   { path: 'viagens', component: ListarViagensComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/viagens', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' }
 ];
 @NgModule({

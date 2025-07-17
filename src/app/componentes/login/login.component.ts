@@ -66,14 +66,14 @@ export class LoginComponent implements OnInit {
       if (this.aba === 'login') {
         const usuario = await lastValueFrom(this.authService.login(email, senha));
         this.snackBar.open('Login realizado com sucesso!', 'Ok', { duration: 3000 });
-        await this.router.navigate(['/viagens']);
+        await this.router.navigate(['/home']);
       } else {
         // cadastro
         await lastValueFrom(this.usuarioService.criar({ nome, email, senha }));
         this.snackBar.open('Cadastro realizado! Entrando...', 'Ok', { duration: 3000 });
         // autentica automaticamente
         await lastValueFrom(this.authService.login(email, senha));
-        await this.router.navigate(['/viagens']);
+        await this.router.navigate(['/home']);
       }
     } catch (err: any) {
       const msg =
